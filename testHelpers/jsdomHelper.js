@@ -4,8 +4,8 @@ module.exports = function (html) {
 		return;
 	}
 
-	var jsdom = require('jsdom').jsdom;
-	global.document = jsdom(html || '');
+	var jsdom = require('jsdom').JSDOM;
+	global.document = new jsdom(html);
 	global.window = global.document.defaultView;
 	global.navigator = {
 		userAgent: 'JSDOM'

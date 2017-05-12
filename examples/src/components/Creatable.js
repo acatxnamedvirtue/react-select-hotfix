@@ -1,11 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+const createReactClass = require('create-react-class');
 import Select from 'react-select';
 
-var CreatableDemo = React.createClass({
+var CreatableDemo = createReactClass({
 	displayName: 'CreatableDemo',
 	propTypes: {
-		hint: React.PropTypes.string,
-		label: React.PropTypes.string
+		hint: PropTypes.string,
+		label: PropTypes.string
 	},
 	getInitialState () {
 		return {

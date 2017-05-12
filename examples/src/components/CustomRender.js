@@ -1,11 +1,14 @@
 import React from 'react';
 import Select from 'react-select';
+import PropTypes from 'prop-types';
 import Highlighter from 'react-highlight-words';
 
-var DisabledUpsellOptions = React.createClass({
+const createReactClass = require('create-react-class');
+
+var DisabledUpsellOptions = createReactClass({
 	displayName: 'DisabledUpsellOptions',
 	propTypes: {
-		label: React.PropTypes.string,
+		label: PropTypes.string,
 	},
 	getInitialState () {
 		return {};

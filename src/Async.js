@@ -1,35 +1,36 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Select from './Select';
 import stripDiacritics from './utils/stripDiacritics';
 
 const propTypes = {
-	autoload: React.PropTypes.bool.isRequired,       // automatically call the `loadOptions` prop on-mount; defaults to true
-	cache: React.PropTypes.any,                      // object to use to cache results; set to null/false to disable caching
-	children: React.PropTypes.func.isRequired,       // Child function responsible for creating the inner Select component; (props: Object): PropTypes.element
-	ignoreAccents: React.PropTypes.bool,             // strip diacritics when filtering; defaults to true
-	ignoreCase: React.PropTypes.bool,                // perform case-insensitive filtering; defaults to true
-	loadingPlaceholder: React.PropTypes.oneOfType([  // replaces the placeholder while options are loading
-		React.PropTypes.string,
-		React.PropTypes.node
+	autoload: PropTypes.bool.isRequired,       // automatically call the `loadOptions` prop on-mount; defaults to true
+	cache: PropTypes.any,                      // object to use to cache results; set to null/false to disable caching
+	children: PropTypes.func.isRequired,       // Child function responsible for creating the inner Select component; (props: Object): PropTypes.element
+	ignoreAccents: PropTypes.bool,             // strip diacritics when filtering; defaults to true
+	ignoreCase: PropTypes.bool,                // perform case-insensitive filtering; defaults to true
+	loadOptions: PropTypes.func.isRequired,    // callback to load options asynchronously; (inputValue: string, callback: Function): ?Promise
+	loadingPlaceholder: PropTypes.oneOfType([  // replaces the placeholder while options are loading
+		PropTypes.node,
+		PropTypes.string
 	]),
-	loadOptions: React.PropTypes.func.isRequired,    // callback to load options asynchronously; (inputValue: string, callback: Function): ?Promise
-	multi: React.PropTypes.bool,                     // multi-value input
+	multi: PropTypes.bool,                     // multi-value input
+	noResultsText: PropTypes.oneOfType([       // field noResultsText, displayed when no options come back from the server
+		PropTypes.node,
+		PropTypes.string
+	]),
+	onChange: PropTypes.func,                  // onChange handler: function (newValue) {}
+	onInputChange: PropTypes.func,             // optional for keeping track of what is being typed
 	options: PropTypes.array.isRequired,             // array of options
-	placeholder: React.PropTypes.oneOfType([         // field placeholder, displayed when there's no value (shared with Select)
-		React.PropTypes.string,
-		React.PropTypes.node
+	placeholder: PropTypes.oneOfType([         // field placeholder, displayed when there's no value (shared with Select)
+		PropTypes.node,
+		PropTypes.string
 	]),
-	noResultsText: React.PropTypes.oneOfType([       // field noResultsText, displayed when no options come back from the server
-		React.PropTypes.string,
-		React.PropTypes.node
+	searchPromptText: PropTypes.oneOfType([    // label to prompt for search input
+		PropTypes.node,
+		PropTypes.string
 	]),
-	onChange: React.PropTypes.func,                  // onChange handler: function (newValue) {}
-	searchPromptText: React.PropTypes.oneOfType([    // label to prompt for search input
-		React.PropTypes.string,
-		React.PropTypes.node
-	]),
-	onInputChange: React.PropTypes.func,             // optional for keeping track of what is being typed
-	value: React.PropTypes.any,                      // initial field value
+	value: PropTypes.any,                      // initial field value
 };
 
 const defaultCache = {};

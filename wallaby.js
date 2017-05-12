@@ -2,7 +2,7 @@
   This is the config file for the [Wallabyjs](http://wallabyjs.com) test runner
 */
 
-var babel = require('babel');
+var babel = require('babel-core');
 
 module.exports = function (wallaby) { // eslint-disable-line no-unused-vars
 	return {

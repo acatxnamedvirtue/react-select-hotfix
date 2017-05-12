@@ -17,7 +17,7 @@ var expect = unexpected
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var TestUtils = require('react-addons-test-utils');
+var TestUtils = require('react-dom/test-utils');
 var sinon = require('sinon');
 
 var Select = require('../src/Select');
@@ -27,8 +27,7 @@ describe('Async', () => {
 
 	function createControl (props = {}) {
 		loadOptions = props.loadOptions || sinon.stub();
-		asyncInstance = TestUtils.renderIntoDocument(
-			<Select.Async
+		asyncInstance = TestUtils.renderIntoDocument(<Select.Async
 				autoload={false}
 				openOnFocus
 				{...props}
